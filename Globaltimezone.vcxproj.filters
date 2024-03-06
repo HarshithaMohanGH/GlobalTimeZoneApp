@@ -18,5 +18,14 @@
     <ClCompile Include="Globaltimezone.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sampletimeconversion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeZoneManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="checkingoutStacktrace.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

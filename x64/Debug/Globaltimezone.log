@@ -1,0 +1,5 @@
+﻿  sampletimeconversion.cpp
+C:\Users\hama\source\repos\Globaltimezone\Globaltimezone\sampletimeconversion.cpp(18,5): error C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\hama\source\repos\Globaltimezone\Globaltimezone\sampletimeconversion.cpp(37,5): error C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  TimeZoneManager.cpp
+  Generating Code...

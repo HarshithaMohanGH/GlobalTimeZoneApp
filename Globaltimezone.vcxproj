@@ -127,7 +127,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="checkingoutStacktrace.cpp" />
     <ClCompile Include="Globaltimezone.cpp" />
+    <ClCompile Include="sampletimeconversion.cpp" />
+    <ClCompile Include="TimeZoneManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
