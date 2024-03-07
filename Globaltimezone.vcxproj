@@ -104,10 +104,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\hama\Downloads\mysql-connector-c++-8.3.0-winx64\mysql-connector-c++-8.3.0-winx64\bin</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\hama\Downloads\mysql-connector-c++-8.3.0-winx64\mysql-connector-c++-8.3.0-winx64\bin</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\Users\hama\Downloads\mysql-connector-c++-8.3.0-winx64\mysql-connector-c++-8.3.0-winx64\lib64\vs14\mysqlcppconn-static.lib;C:\Users\hama\Downloads\mysql-connector-c++-8.3.0-winx64\mysql-connector-c++-8.3.0-winx64\lib64\vs14\mysqlcppconn.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -127,9 +130,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="checkingoutStacktrace.cpp" />
     <ClCompile Include="Globaltimezone.cpp" />
-    <ClCompile Include="sampletimeconversion.cpp" />
     <ClCompile Include="TimeZoneManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

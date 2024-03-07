@@ -1,5 +1,22 @@
-﻿  sampletimeconversion.cpp
-C:\Users\hama\source\repos\Globaltimezone\Globaltimezone\sampletimeconversion.cpp(18,5): error C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\hama\source\repos\Globaltimezone\Globaltimezone\sampletimeconversion.cpp(37,5): error C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+﻿  Globaltimezone.cpp
+C:\Users\hama\source\repos\Globaltimezone\Globaltimezone\Globaltimezone.cpp(52,9): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\utility(250,16): warning C4267: 'initializing': conversion from 'size_t' to '_Ty1', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\utility(250,16): warning C4267:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\utility(250,16): warning C4267:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\utility(250,16): warning C4267:             _Ty1=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\utility(250,16): warning C4267:         ]
+  (compiling source file 'Globaltimezone.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\utility(250,16):
+  the template instantiation context (the oldest one first) is
+  	C:\Users\hama\source\repos\Globaltimezone\Globaltimezone\Globaltimezone.cpp(153,45):
+  	see reference to function template instantiation 'std::pair<int,std::string>::pair<unsigned __int64,std::string&,0>(_Other1 &&,_Other2) noexcept(false)' being compiled
+          with
+          [
+              _Other1=unsigned __int64,
+              _Other2=std::string &
+          ]
+  		C:\Users\hama\source\repos\Globaltimezone\Globaltimezone\Globaltimezone.cpp(153,27):
+  		see the first reference to 'std::pair<int,std::string>::pair' in 'Globaltimezone::addFavTimeZ'
+  
   TimeZoneManager.cpp
   Generating Code...
