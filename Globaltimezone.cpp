@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <ctime>
 #include <map>
@@ -13,8 +14,18 @@ private:
 public:
 	TimeZoneConverter() {
 		timeZoneOffsets["UTC"] = 0;
-		timeZoneOffsets["PST"] = -8;
-		timeZoneOffsets["EST"] = -5;
+		timeZoneOffsets["PST"] = -8; // Pacific Standard Time
+		timeZoneOffsets["EST"] = -5; // Eastern Standard Time
+		timeZoneOffsets["CST"] = -6; // Central Standard Time
+		timeZoneOffsets["MST"] = -7; // Mountain Standard Time
+		timeZoneOffsets["HST"] = -10; // Hawaii-Aleutian Standard Time
+		timeZoneOffsets["AKST"] = -9; // Alaska Standard Time
+		timeZoneOffsets["AEST"] = 10; // Australian Eastern Standard Time
+		timeZoneOffsets["JST"] = 9; // Japan Standard Time
+		timeZoneOffsets["IST"] = 5.5; // Indian Standard Time
+		timeZoneOffsets["BST"] = 1; // British Summer Time
+		timeZoneOffsets["CET"] = 1; // Central European Time
+
 
 	}
 
@@ -63,8 +74,26 @@ private:
 
 	map<int, string> favoriteTimeZones;
 public:
+
+	void logInteration(const string& interaction) {
+		ofstream logfile("user_interaction.txt", ios::app);
+		if (logfile.is_open()) {
+			time_t now = time(nullptr);
+			char timestamp[20];
+			strftime(timestamp, sizeof(timestamp), "%Y-%m-%d %H:%M:%S", localtime(&now));
+			logfile << "[" << timestamp << "] " << interaction << endl; // Log interaction with timestamp
+			logfile.close();
+
+		}
+		else {
+			cout << "failed to open and store details" << endl;
+		}
+
+
+	}
+	
 	void displayMenu() {
-		cout << "Welcome to the Global Time Zone Application \n\n"
+		cout << "Welcome to the Global Time Zone Application \n"
 			<< " 1. View current time in different time zones \n "
 			<< " 2. Convert time between different time zones \n"
 			<< " 3. Toggle daylight savings time on or off. \n"
@@ -73,6 +102,7 @@ public:
 			<< " 6. Exit .\n\n"
 			<< "Enter your choice";
 	}
+
 	void executeChoice(int choice) {
 		switch (choice) {
 		case 1:
@@ -80,13 +110,15 @@ public:
 		case 2:
 			convertTime(); break;
 		case 3:
-			toggleDayLight();
+			toggleDayLight(); break;
 		case 4:
 			manageFavoriteTimeZones();
 			break;
 		case 5:
 			displayHelp();
 			break;
+		case 6:
+			exit(1);
 		default:
 			cout << "invalid choice\n";
 		}
@@ -190,11 +222,17 @@ public:
 int main() {
 	Globaltimezone app;
 	int choice;
+	app.logInteration("Your interaction is being stored");
 	while (true) {
+		
 		app.displayMenu();
 		cin >> choice;
-		cout << "\n";
-		app.executeChoice(choice);
+			cout << "\n";
+			app.logInteration("the user selection is " + to_string(choice) + ".");
+
+			app.executeChoice(choice);
+				
 	}
+	return 0;
 
 }
