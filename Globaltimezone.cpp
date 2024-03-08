@@ -7,10 +7,7 @@
 #include <algorithm>
 #include <time.h>
 #include "TimeZoneManager.cpp"
-#include <chrono>
-#include <stdio.h>
 
-using namespace std::chrono;
 using namespace std;
 
 class Globaltimezone {
@@ -90,39 +87,38 @@ public:
 	}
 
 	void convertTime() {
-		string sourceTimeZone, targetTimeZone, time, timezone;
-		int choice;
-		cout << "Enter the source time option\n"
-			<< "1. Current time\n"
-			<< "2. Enter your own time\n"
-			<< "Enter your choice: ";
-		cin >> choice;
+		string sourceTimeZone, targetTimeZone;
+		string currentTime = getCurrentSystemTime(); // Get current system time
 
-		if (choice == 1) {
-			
-			std::cout << converter.getCurrentTime(timezone) << '\n';
-		}
-		else if (choice == 2) {
-			cout << "Enter the time(YYYY - MM - DD HH : MM:SS) : ";
-			cin.ignore(); 
-			getline(cin, time);
-		}
-		else {
-			cout << "Invalid Input";
-			return;
-
-		}
-		cout << "Enter the target time zone\n";
+		// Input for source and target time zones
+		cout << "Enter the source time zone: ";
+		cin >> sourceTimeZone;
+		cout << "Enter the target time zone: ";
 		cin >> targetTimeZone;
-		cout << "Converted time in " << targetTimeZone << ": " << converter.convertTime(sourceTimeZone, targetTimeZone, time) << "\n\n";
 
-
-
+		// Perform time zone conversion
+		cout << "Converted time in " << targetTimeZone << ": " << converter.convertTime(sourceTimeZone, targetTimeZone, currentTime) << "\n\n";
 	}
-/*
+
+	string getCurrentSystemTime() {
+		// Get current system time
+		time_t now = time(nullptr);
+		char currentTime[20];
+		strftime(currentTime, sizeof(currentTime), "%Y-%m-%d %H:%M:%S", localtime(&now));
+		return currentTime;
+	}
+
+
+	bool isValidTimeFormat(const string& time) {
+		// Example validation (replace with actual validation logic)
+		// For simplicity, assuming any non-empty string is valid
+		return !time.empty();
+	}
+
+
+	/*
 	void toggleDayLight() {
 		string timezonename, choice;
-		cout << "Enter the name of the timezone:";
 		cout << "Enable or diable DST?(on/off) ";
 		cin >> choice;
 		cout << "DST " << choice << " for the time zone\n\n ";
@@ -199,17 +195,27 @@ int main() {
 	int choice;
 	app.logInteration("Your interaction is being stored");
 	while (true) {
-		
-		app.displayMenu();
-		cin >> choice;
 
+		app.displayMenu();
+		try {
+			cin >> choice;
+			if (choice > 6) {
+				throw new exception;
+			}
+			else if (typeid(choice).name() == "string") {
+				throw new exception;
+			}
+		}
+		catch (invalid_argument& e) {
+			cout << "Invalid Argument: " << e.what() << endl;
+		}
+	}
 
 			cout << "\n";
 			app.logInteration("the user selection is " + to_string(choice) + ".");
 
 			app.executeChoice(choice);
 				
-	}
 	return 0;
 
 }
