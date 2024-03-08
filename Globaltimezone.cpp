@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <fstream>
 #include <string>
 #include <ctime>
@@ -7,8 +7,10 @@
 #include <algorithm>
 #include <time.h>
 #include "TimeZoneManager.cpp"
+#include <chrono>
+#include <stdio.h>
 
-
+using namespace std::chrono;
 using namespace std;
 
 class Globaltimezone {
@@ -53,7 +55,7 @@ public:
 		case 2:
 			convertTime(); break;
 		case 3:
-			toggleDayLight(); break;
+			//ggleDayLight(); break;
 		case 4:
 			manageFavoriteTimeZones();
 			break;
@@ -72,8 +74,7 @@ public:
 		cout << "Enter the name of the timezone\n";
 		cin >> timezone;
 		if (!timezone.empty() && find_if(timezone.begin(), timezone.end(), [](char c) {
-			return !isdigit(c);
-			}) == timezone.end()) {
+			return isdigit(c);	}) == timezone.end()) {
 			if (converter.timeZoneOffsets.find(timezone) != converter.timeZoneOffsets.end()) {
 				cout << "Current time in " << timezone << ":" << converter.getCurrentTime(timezone) << "\n\n";
 			}
@@ -83,33 +84,50 @@ public:
 		}
 		else {
 			cout << "Invalid Input.Please input a valid time zone";
-			exit(1);
+			
 			}
 		
 	}
 
 	void convertTime() {
-		string sourceTimeZone, targetTimeZone, time;
-		cout << "Enter the source time\n";
-		cin >> sourceTimeZone;
+		string sourceTimeZone, targetTimeZone, time, timezone;
+		int choice;
+		cout << "Enter the source time option\n"
+			<< "1. Current time\n"
+			<< "2. Enter your own time\n"
+			<< "Enter your choice: ";
+		cin >> choice;
+
+		if (choice == 1) {
+			
+			std::cout << converter.getCurrentTime(timezone) << '\n';
+		}
+		else if (choice == 2) {
+			cout << "Enter the time(YYYY - MM - DD HH : MM:SS) : ";
+			cin.ignore(); 
+			getline(cin, time);
+		}
+		else {
+			cout << "Invalid Input";
+			return;
+
+		}
 		cout << "Enter the target time zone\n";
 		cin >> targetTimeZone;
-		cout << "Enter the time (YYYY-MM-DD HH:MM:SS): ";
-		cin.ignore();
-		getline(cin, time);
 		cout << "Converted time in " << targetTimeZone << ": " << converter.convertTime(sourceTimeZone, targetTimeZone, time) << "\n\n";
 
 
 
 	}
-
+/*
 	void toggleDayLight() {
-		string choice;
+		string timezonename, choice;
+		cout << "Enter the name of the timezone:";
 		cout << "Enable or diable DST?(on/off) ";
 		cin >> choice;
 		cout << "DST " << choice << " for the time zone\n\n ";
 
-	}
+	}*/
 
 	void manageFavoriteTimeZones() {
 		int choice;
@@ -184,6 +202,8 @@ int main() {
 		
 		app.displayMenu();
 		cin >> choice;
+
+
 			cout << "\n";
 			app.logInteration("the user selection is " + to_string(choice) + ".");
 
