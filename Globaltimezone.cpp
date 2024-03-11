@@ -17,7 +17,7 @@ private:
 	map<int, string> favoriteTimeZones;
 public:
 
-	void logInteration(const string& interaction) {
+	void logInteraction(const string& interaction) {
 		ofstream logfile("user_interaction.txt", ios::app);
 		if (logfile.is_open()) {
 			time_t now = time(nullptr);
@@ -33,7 +33,7 @@ public:
 
 
 	}
-	
+
 	void displayMenu() {
 		cout << "\nWelcome to the Global Time Zone Application \n"
 			<< " 1. View current time in different time zones \n "
@@ -52,7 +52,7 @@ public:
 		case 2:
 			convertTime(); break;
 		case 3:
-			//ggleDayLight(); break;
+			toggleDayLight(); break;
 		case 4:
 			manageFavoriteTimeZones();
 			break;
@@ -81,9 +81,9 @@ public:
 		}
 		else {
 			cout << "Invalid Input.Please input a valid time zone";
-			
-			}
-		
+
+		}
+
 	}
 
 	void convertTime() {
@@ -116,14 +116,14 @@ public:
 	}
 
 
-	/*
+
 	void toggleDayLight() {
 		string timezonename, choice;
 		cout << "Enable or diable DST?(on/off) ";
 		cin >> choice;
 		cout << "DST " << choice << " for the time zone\n\n ";
 
-	}*/
+	}
 
 	void manageFavoriteTimeZones() {
 		int choice;
@@ -165,7 +165,7 @@ public:
 
 		if (index > 0 && index <= favoriteTimeZones.size()) {
 			auto it = favoriteTimeZones.begin();
-			std::advance(it, index - 1); 
+			std::advance(it, index - 1);
 
 			cout << "Removed " << it->second << " successfully.\n";
 			favoriteTimeZones.erase(it); // Remove the element
@@ -193,29 +193,19 @@ public:
 int main() {
 	Globaltimezone app;
 	int choice;
-	app.logInteration("Your interaction is being stored");
-	while (true) {
 
+	while (true) {
 		app.displayMenu();
-		try {
-			cin >> choice;
-			if (choice > 6) {
-				throw new exception;
-			}
-			else if (typeid(choice).name() == "string") {
-				throw new exception;
-			}
-		}
-		catch (invalid_argument& e) {
-			cout << "Invalid Argument: " << e.what() << endl;
-		}
+		//cout << "Enter your choice: ";
+		cin >> choice;
+		cout << "\n";
+
+		// Log user interaction
+		string interaction = "User selected choice " + to_string(choice);
+		app.logInteraction(interaction);
+
+		app.executeChoice(choice);
 	}
 
-			cout << "\n";
-			app.logInteration("the user selection is " + to_string(choice) + ".");
-
-			app.executeChoice(choice);
-				
 	return 0;
-
 }

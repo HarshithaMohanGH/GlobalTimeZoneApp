@@ -9,6 +9,7 @@ using namespace std;
 class TimeZoneConverter {
 public:
     map<string, int> timeZoneOffsets;
+    bool isDaylightSavingsActive;
 
 public:
     TimeZoneConverter() {
@@ -23,6 +24,8 @@ public:
         timeZoneOffsets["IST"] = 5.5; // Indian Standard Time
         timeZoneOffsets["BST"] = 1; // British Summer Time
         timeZoneOffsets["CET"] = 1; // Central European Time
+
+        isDaylightSavingsActive = false; // Initialize as false by default
     }
 
     int getTimeZoneOffset(const string& timeZone) {
@@ -47,7 +50,7 @@ public:
         return buffer;
     }
 
-    string convertTime(string& sourceTimeZone, string& targetTimeZone, string& sourceTime) {
+    string convertTime(const string& sourceTimeZone, const string& targetTimeZone, const string& sourceTime) {
         int sourceOffset = getTimeZoneOffset(sourceTimeZone);
         int targetOffset = getTimeZoneOffset(targetTimeZone);
 
@@ -77,5 +80,15 @@ public:
         ostringstream oss;
         oss << year << "-" << month << "-" << day << " " << hour << ":" << minute << ":" << second;
         return oss.str();
+    }
+
+    void enableDaylightSavings() {
+        isDaylightSavingsActive = true;
+        // Additional logic to enable daylight savings if needed
+    }
+
+    void disableDaylightSavings() {
+        isDaylightSavingsActive = false;
+        // Additional logic to disable daylight savings if needed
     }
 };
